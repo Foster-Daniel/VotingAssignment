@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweden Voting</title>
+    <link rel="stylesheet" href="Index.css">
+</head>
+<body>
+    <div id="heading">
+        <h1 id="page-title">Votes in Sweden (1996) <img src="https://acegif.com/wp-content/uploads/sweden-flag.gif" alt="Swedish Flag" width="45"/></h1>
+    </div>
+    <main>
+        <h1>Far Ranged Votes</h1>
+        <div id="far-ranged-votes">
+            <div id="most-votes">
+                <h1>Most Votes</h1>
+                <div id="most-number">
+                    <p>Insert Municipality</p>
+                    <h2>Votes</h2>
+                </div>
+                <br>
+                <div id="most-percentage">
+                    <p>Insert Municipality</p>
+                    <h2>%</h2>
+                </div>
+            </div>
+            <div id="least-votes">
+                <h1>Least Votes</h1>
+                <div id="least-number">
+                    <p>Insert Municipality</p>
+                    <h2>Votes</h2>
+                </div>
+                <br>
+                <div id="least-percentage">
+                    <p>Insert Municipality</p>
+                    <h2>%</h2>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h1>All Votes</h1>
+        <div id="all-votes">
+            <div id="search-form">
+                <input id="search-input" type="text" placeholder="Search for a municipality" oninput="search()  ">
+                <br>
+                <select id="order" name="order" onchange="order()">
+                    <option value="mostNumber">By Most Votes</option>
+                    <option value="leastNumber">By Least Votes</option>
+                    <option value="mostPercent">By Highest Percentage of Votes</option>
+                    <option value="leastPercent">By Lowest Percentage of Votes</option>
+                    <option value="mostPopulation">By Highest Population</option>
+                    <option value="leastPopulation">By Lowest Population</option>
+                    <option value="name">By Name in Alphabetical Order</option>
+                    <option value="reverseName">By Name in Reverse Alphabetical Order</option>
+                </select>
+            </div>
+            <div id="Stockholm" data-name="Stockholm" data-number="543211" data-percent="50" data-population="345345" class="municipality">
+                <h1>Stockholm</h1>
+                <hr>
+                <h2>543211 number of people voted</h2>
+                <h2>50% of people voted</h2>
+            </div>
+            <div id="Linkoping" data-name="Linköping" data-number="19457" data-percent="70" data-population="234234" class="municipality">
+                <h1>Linköping</h1>
+                <hr>
+                <h2>19457 number of people voted</h2>
+                <h2>70% of people voted</h2>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <h1>Choose a Year:</h1>
+            <h2 id="displayed-year">1996</h2>
+        </div>
+        <input type="range" min="1973" max="2018" value="" name="chooseYear" id="choose-year" oninput="changeYear(this)">
+    </footer>
+    <script src="Index.js"></script>
+    <script src="VotingAPI.js"></script>
+</body>
+</html>
