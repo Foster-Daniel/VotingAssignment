@@ -49,7 +49,7 @@ function retrieveData(year) {
                     <hr>
                     <h2>${item.values[0]}% of people voted</h2>
                 `;
-                if(item.values[0] == '..') console.warn('No Data for' + names[i]);
+                if(item.values[0] == '..') console.warn('No Data for ' + names[i]);
                 else allVotes.appendChild(newItem); // Adding the newly created elements to the DOM.
                 i++;
             });
