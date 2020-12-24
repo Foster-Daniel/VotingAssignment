@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweden Voting</title>
+    <link rel="stylesheet" href="Index.css">
+    <link rel="shortcut icon" type="image/jpg" href="https://pbs.twimg.com/profile_images/585479991384608768/G00dr8oc_400x400.png"/>
+</head>
+<body>
+    <div id="heading">
+        <h1 id="page-title">Votes in Sweden (<select id="heading-select" type="range" min="1973" max="2018" value="" name="chooseYear" id="choose-year" onchange="changeYear(this)" class="select">
+        </select>) <img src="https://acegif.com/wp-content/uploads/sweden-flag.gif" alt="Swedish Flag"/></h1>
+    </div>
+    <main>
+        <h1>Far Ranged Votes</h1>
+        <div id="far-ranged-votes">
+            <div id="most-votes">
+                <h1 class="far-ranged-headers">Highest Percent of Votes</h1>
+                <div id="most-percentage">
+                    <p id="highest-percent-name">Insert Municipality</p>
+                    <h2 id="highest-percent-value">%</h2>
+                </div>
+            </div>
+            <div id="least-votes">
+                <h1 class="far-ranged-headers">Lowest Percent of Votes</h1>
+                <div id="least-percentage">
+                    <p id="least-percent-name">Insert Municipality</p>
+                    <h2 id="least-percent-value">%</h2>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h1>All Votes</h1>
+        <div id="all-votes">
+            <div id="search-form">
+                <input id="search-input" type="text" placeholder="Search for a municipality" oninput="search()  ">
+                <br>
+                <select id="order" name="order" onchange="order(null, null)">
+                    <option value="mostPercent">By Highest Percentage of Votes</option>
+                    <option value="leastPercent">By Lowest Percentage of Votes</option>
+                    <option value="name">By Name in Alphabetical Order</option>
+                    <option value="reverseName">By Name in Reverse Alphabetical Order</option>
+                </select>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <h1>Choose a Year:</h1>
+            <select id="footer-select" type="range" min="1973" max="2018" value="" name="chooseYear" id="choose-year" onchange="changeYear(this)" class="select">
+                
+            </select>
+        </div>
+    </footer>
+    <script src="Index.js"></script>
+    <script src="VotingAPI.js"></script>
+</body>
+</html>
