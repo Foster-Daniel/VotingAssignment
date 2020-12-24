@@ -28,7 +28,7 @@ function retrieveData(year) {
 
             // Parsing the data so that it can be used in Javascript.
             const result = JSON.parse(this.response)
-
+            console.log(result);
             // Removing old results from the page to make way for new results.
             const municipalities = document.getElementsByClassName('municipality');
             for(let i = municipalities.length - 1; i >= 0; i--)
@@ -38,6 +38,7 @@ function retrieveData(year) {
             const allVotes = document.getElementById('all-votes');
             let i = 0;
             result.data.forEach(item => {
+                console.log('Name: ' + names[i] + ', ID: ' + item.key[0] + ', Percent: ' + item.values[0]);
                 const newItem = document.createElement('div');
                 newItem.id = names[i];
                 newItem.classList.add('municipality');
@@ -48,6 +49,15 @@ function retrieveData(year) {
                     <hr>
                     <h2>${item.values[0]}% of people voted</h2>
                 `;
+                if(item.values[0] == '..') {
+                    newItem.setAttribute('data-percent', 'No Data');
+                    newItem.innerHTML = `
+                    <h1>${names[i]}</h1>
+                    <hr>
+                    <h2>No Data Available</h2>
+                    `;
+                }
+
                 allVotes.appendChild(newItem); // Adding the newly created elements to the DOM.
                 i++;
             });
@@ -55,10 +65,10 @@ function retrieveData(year) {
             // A simple for loop to calculate the highest and lowest percentages to get the areas with the most and least turnout.
             // The relevant variables are simply compared against every other value and if one is lower/higher, it takes its value.
             let lowestPercent, highestPercent;
-            lowestPercent = highestPercent = {percent: municipalities[0].dataset.percent, name:municipalities[0].dataset.name};
+            lowestPercent = highestPercent = {percent: parseFloat(municipalities[0].dataset.percent), name:municipalities[0].dataset.name};
             for(let i = 0; i < municipalities.length; i++) {
-                if(lowestPercent > municipalities[i].dataset.percent) lowestPercent = {percent: municipalities[i].dataset.percent, name:municipalities[i].dataset.name}
-                if(highestPercent < municipalities[i].dataset.percent) highestPercent = {percent: municipalities[i].dataset.percent, name:municipalities[i].dataset.name};
+                if(lowestPercent.percent > parseFloat(municipalities[i].dataset.percent) && parseFloat(municipalities[i].dataset.percent) != '..') lowestPercent = {percent: parseFloat(municipalities[i].dataset.percent), name:municipalities[i].dataset.name}
+                if(highestPercent.percent < parseFloat(municipalities[i].dataset.percent) && parseFloat(municipalities[i].dataset.percent) != '..') highestPercent = {percent: parseFloat(municipalities[i].dataset.percent), name:municipalities[i].dataset.name};
             }
 
             // Updating the DOM with the values gathered from the for loop.
@@ -79,6 +89,4 @@ function retrieveData(year) {
 }
 
 // The website must be populated on load. '2018' is the default position for the range input and thus is the information to be shown.
-retrieveData(2018);
-
-//   16 --> 0163 || 0180
+retrieveData(2018); 
