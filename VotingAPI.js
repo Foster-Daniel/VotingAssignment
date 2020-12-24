@@ -49,16 +49,8 @@ function retrieveData(year) {
                     <hr>
                     <h2>${item.values[0]}% of people voted</h2>
                 `;
-                if(item.values[0] == '..') {
-                    newItem.setAttribute('data-percent', 'No Data');
-                    newItem.innerHTML = `
-                    <h1>${names[i]}</h1>
-                    <hr>
-                    <h2>No Data Available</h2>
-                    `;
-                }
-
-                allVotes.appendChild(newItem); // Adding the newly created elements to the DOM.
+                if(item.values[0] == '..') console.warn('No Data for' + names[i]);
+                else allVotes.appendChild(newItem); // Adding the newly created elements to the DOM.
                 i++;
             });
 
